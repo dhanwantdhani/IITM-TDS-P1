@@ -1,0 +1,76 @@
+# Basic Endpoints Test
+# Test the read endpoint
+curl "http://localhost:8000/read?path=/data/test.txt"
+
+# Phase A Tasks
+
+# A1. Install uv and run datagen.py
+curl -X POST "http://localhost:8000/run?task=Install%20uv%20and%20run%20datagen.py%20with%2023f2003231@ds.study.iitm.ac.in"
+
+# A2. Format markdown
+curl -X POST "http://localhost:8000/run?task=Format%20the%20contents%20of%20/data/format.md%20using%20prettier@3.4.2"
+
+# A3. Count Wednesdays
+curl -X POST "http://127.0.0.1:8000/run?task=Count%20the%20number%20of%20Wednesdays%20in%20/data/dates.txt%20and%20write%20to%20/data/dates-wednesdays.txt"
+
+# A4. Sort contacts
+curl -X POST "http://localhost:8000/run?task=Sort%20the%20array%20of%20contacts%20in%20/data/contacts.json%20by%20last_name%20then%20first_name%20and%20write%20to%20/data/contacts-sorted.json"
+
+# A5. Recent log files
+curl -X POST "http://localhost:8000/run?task=Write%20the%20first%20line%20of%20the%2010%20most%20recent%20.log%20files%20in%20/data/logs/%20to%20/data/logs-recent.txt"
+
+# A6. Extract markdown headers
+curl -X POST "http://localhost:8000/run?task=Find%20all%20Markdown%20files%20in%20/data/docs/%20and%20create%20index%20file%20/data/docs/index.json%20with%20H1%20headers"
+
+# A7. Extract email
+curl -X POST "http://localhost:8000/run?task=Extract%20sender%27s%20email%20from%20/data/email.txt%20and%20write%20to%20/data/email-sender.txt"
+
+# A8. Extract card number
+curl -X POST "http://localhost:8000/run?task=Extract%20card%20number%20from%20/data/credit-card.png%20and%20write%20to%20/data/credit-card.txt"
+
+# A9. Find similar comments
+curl -X POST "http://localhost:8000/run?task=Find%20the%20most%20similar%20pair%20of%20comments%20in%20/data/comments.txt%20and%20write%20to%20/data/comments-similar.txt"
+
+# A10. Query ticket sales
+curl -X POST "http://localhost:8000/run?task=Calculate%20total%20sales%20of%20Gold%20tickets%20from%20/data/ticket-sales.db%20and%20write%20to%20/data/ticket-sales-gold.txt"
+
+# Phase B Tasks
+
+# B3. Fetch API data
+curl -X POST "http://localhost:8000/run?task=Fetch%20data%20from%20https://api.example.com/users%20and%20save%20to%20/data/users.json"
+
+# B4. Git operations
+curl -X POST "http://localhost:8000/run?task=Clone%20https://github.com/example/repo.git%20and%20commit%20changes%20to%20README.md"
+
+# B5. SQL Query
+curl -X POST "http://localhost:8000/run?task=Run%20SELECT%20*%20FROM%20users%20WHERE%20active=true%20on%20/data/users.db"
+
+# B6. Web scraping
+curl -X POST "http://localhost:8000/run?task=Extract%20all%20article%20titles%20from%20https://example.com/blog%20and%20save%20to%20/data/titles.json"
+
+# B7. Image processing
+curl -X POST "http://localhost:8000/run?task=Resize%20/data/large-image.jpg%20to%20800px%20width%20and%20save%20as%20/data/resized-image.jpg"
+
+# B8. Audio transcription
+curl -X POST "http://localhost:8000/run?task=Transcribe%20/data/recording.mp3%20to%20/data/transcript.txt"
+
+# B9. Markdown to HTML
+curl -X POST "http://localhost:8000/run?task=Convert%20/data/document.md%20to%20HTML%20and%20save%20as%20/data/document.html"
+
+# B10. CSV filtering
+curl -X POST "http://localhost:8000/run?task=Filter%20/data/sales.csv%20where%20region=US%20and%20return%20as%20JSON"
+
+# Security Tests
+# Test accessing file outside /data
+curl -X POST "http://localhost:8000/run?task=Read%20file%20from%20/etc/passwd"
+curl "http://localhost:8000/read?path=/etc/passwd"
+
+# Test file deletion (should be prevented)
+curl -X POST "http://localhost:8000/run?task=Delete%20/data/important.txt"
+
+# Verify results
+# After each task, you can verify the output using the read endpoint
+curl "http://localhost:8000/read?path=/data/dates-wednesdays.txt"
+curl "http://localhost:8000/read?path=/data/contacts-sorted.json"
+curl "http://localhost:8000/read?path=/data/email-sender.txt"
+# etc... 
